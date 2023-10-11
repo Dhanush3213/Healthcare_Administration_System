@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block title %}Pathologist Master{% endblock %}
+{% load static%}
+{% block content %}
+<div class="row">
+    <div class='col-md-3'>
+        <h3>Pathologist Master</h3>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <form action=""></form>
+        <div class="col-md-3">
+
+            <div class="form-group">
+                <label for="from">DoctorName : </label>
+                <input type="text" class="form-control" id="from">
+            </div>
+
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="to">DoctorCode : </label>
+                <input type="text" class="form-control" id="to">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <br>
+            <a href=""><button class='btn btn-primary'>Search
+            </button></a>
+        </div>
+        <div class="col-md-2">
+            <br>
+            <a href="{% url 'addpathologist' %}"><button class='btn btn-primary'>Add
+                Pathologist</button></a>
+        </div>
+        </form>
+    </div>
+
+</div>
+
+</div>
+
+<div class="row">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>DoctorCode</th>
+                    <th>DoctorName</th>
+                    <th>Qualification</th>
+                    <th>Specification</th>
+                    <th>Address</th>
+                    <th>Mobile</th>
+                    <th>Signature</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for detail in keys %}
+                <tr>
+                    <td>{{detail.Doctorcode}}</td>
+                    <td>{{detail.DoctorName}}</td>
+                    <td>{{detail.Qualification}}</td>
+                    <td>{{detail.Specialization}}</td>
+                    <td>{{detail.Address}}</td>
+                    <td>{{detail.Mobile}}</td>
+                    <td><img src="{% static detail.Signature %}" class="img-responsive"></td>
+                    <td>
+                        <a href="{% url 'deletepathologist' pid=detail.Doctorcode %}"><span class="glyphicon glyphicon-trash">&nbsp;</span></a>
+                        <a href="{% url 'editpathologist' pid=detail.Doctorcode  %}"><span
+                                class="glyphicon glyphicon-edit">&nbsp;</span></a>
+                    </td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+{% endblock%}
